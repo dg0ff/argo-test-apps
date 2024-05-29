@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: dgoff-app
+  name: dgoff-app
+  namespace: dgoff-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dgoff-app
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: dgoff-app
+    spec:
+      containers:
+      - image: quay.io/redhatworkshops/bgd
+        name: bgd
+        resources: {}
