@@ -1,0 +1,19 @@
+appVersion: v1.3.1
+description: WWT Customized Insallation of cert-manager
+home: https://github.wwt.com/operations/cert-manager-helm
+icon: https://github.wwt.com/raw/operations/cert-manager-helm/master/wwt-cert-manager/logo.png
+keywords:
+  - cert-manager
+  - letsencrypt
+  - tls
+maintainers:
+- email: ReliabilityEngineering@wwt.com
+  name: Reliability Engineering
+name: wwt-cert-manager
+sources:
+  - https://github.wwt.com/operations/cert-manager-helm
+version: 1.3.1-1
+dependencies:
+  - name: cert-manager
+    version: v1.3.1
+    repository: https://charts.jetstack.io
