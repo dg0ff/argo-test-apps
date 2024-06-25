@@ -1,0 +1,10 @@
+apiVersion: v2
+name: velero
+description: A helm chart to install velero for kubernetes
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+dependencies:
+- name: velero
+  version: 3.1.2
+  repository: https://vmware-tanzu.github.io/helm-charts

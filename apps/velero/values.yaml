@@ -1,0 +1,57 @@
+velero:
+  backupsEnabled: true
+  snapshotsEnabled: true
+  deployNodeAgent: false
+  configuration:
+    provider: aws
+    backupStorageLocation:
+      name: "default"
+      config:
+        region: "minio"
+        s3ForcePathStyle: "true"
+        s3Url: "http://prdmgmt01.k8s.wwt.com:9000"
+  rbac:
+    create: true
+    clusterAdministator: true
+  ServiceAccount:
+    server: 
+      create: true
+      name:
+      annotations:
+  credentials:
+    useSecret: true
+    existingSecret: "minio-credentials"
+  schedules:
+    cluster-daily:
+      schedule: "0 1 * * *"
+      template:
+        excludedNamespaces: null
+        excludedResources: null
+        hooks:
+          resources: null
+        includeClusterResources: true
+        includedNamespaces:
+        - '*'
+        includedResources: null
+        labelSelector: null
+        snapshotVolumes: false
+        storageLocation: default
+        ttl: 720h0m0s
+  initContainers:
+    - name: velero-plugin-for-aws
+      image: docker.wwt.com/velero/velero-plugin-for-aws:v1.2.0
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+        - mountPath: /target
+          name: plugins
+  
+  image:
+    repository: docker.wwt.com/velero/velero
+  metrics:
+    serviceMonitor:
+      enabled: false
+      additionalLabels:
+        release: kube-prometheus-stack
+  kubectl:
+    image:
+      repository: docker.wwt.com/bitnami/kubectl
