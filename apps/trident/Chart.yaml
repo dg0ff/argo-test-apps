@@ -1,0 +1,10 @@
+apiVersion: v2
+name: trident
+description: A helm chart to install trident for kubernetes
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+dependencies:
+- name: trident-operator
+  version: 23.01.0
+  repository: https://netapp.github.io/trident-helm-chart
