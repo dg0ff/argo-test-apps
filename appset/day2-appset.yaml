@@ -24,16 +24,11 @@ spec:
         repoURL: https://github.com/dg0ff/argo-test-apps.git
         targetRevision: main
         path: 'apps/{{index .path.segments 1}}'
-        clustername: 'apps/{{index .path.segments 2}}'
-        helm:
-          valueFiles:
-            - "values.yaml"
-            - "clusters/{{.clustername }}/values.yaml"
       
       # Destination cluster and namespace to deploy the application
       destination:
-        server: https://kubernetes.default.svc
-        namespace: '{{.path.basenameNormalized}}'
+        name: https://kubernetes.default.svc
+        namespace: 'openshift-gitops'
 
       # Sync policy
       syncPolicy:
